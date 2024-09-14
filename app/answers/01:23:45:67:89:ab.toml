@@ -1,0 +1,14 @@
+[global]
+keyboard = "en-us"
+country = "us"
+fqdn = "pveauto.testinstall"
+mailto = "mail@no.invalid"
+timezone = "America/Chicago"
+root_password = "123456"
+root_ssh_keys = []
+
+[network]
+source = "from-dhcp"
+
+[disk-setup]
+filesystem = "ext4"
