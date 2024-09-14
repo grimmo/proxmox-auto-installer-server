@@ -2,7 +2,7 @@
 [![proxmox-auto-installer-server on DockerHub][dockerhub-image]][dockerhub-url]
 [![Docker Build][gh-actions-image]][gh-actions-url]
 
-# Overview
+# proxmox-auto-installer-server
 
 This `Dockerfile` provides a mechanism to host `answer.toml` files, served dynamically, for Automated Proxmox VE installation via the HTTP answer file option.
 
@@ -10,20 +10,28 @@ Doc: https://pve.proxmox.com/wiki/Automated_Installation
 
 > NOTE: Throughout this document, it's assumed that you are performing this on a Proxmox VE host or similar Debian/Ubuntu based solution. You *may* need to modify these steps if you are using another distro.
 
+Builds are available at the following Docker repositories:
+
+* Docker Hub: [docker.io/slothcroissant/proxmox-auto-installer-server](https://hub.docker.com/r/slothcroissant/proxmox-auto-installer-server)
+* GitHub Container Registry: [ghcr.io/slothcroissant/proxmox-auto-installer-server](https://ghcr.io/slothcroissant/proxmox-auto-installer-server)
+* Quay Container Registry: [quay.io/slothcroissant/proxmox-auto-installer-server](https://quay.io/repository/slothcroissant/proxmox-auto-installer-server)
+
 # Run the Container
 
-Populate a folder on the host with your .toml files (in this example, `~/Downloads/answers`). Each file should be `<mac_address>.toml` - for example `bc:24:11:d5:36:d1.toml`
+Populate a folder on the host with your .toml files (in this example, `/host/path/answers`). Each file should be `<mac_address>.toml` - for example `bc:24:11:d5:36:d1.toml`
 
 Run the container:
 
 ``` bash
-docker run -p 8000:8000 --mount type=bind,source=~/Downloads/answers,target=/app/answers slothcroissant/proxmox-auto-installer-server:latest
+docker run -p 8000:8000 --mount type=bind,source=/host/path/answers,target=/app/answers slothcroissant/proxmox-auto-installer-server:latest
 ```
 
 | Key | Value |
 |-|-|
 | `-p 8000:8000` | Port (host:container) on which to expose the application. The container port is `8000`, but you can map a different port via Docker. Ref: [Docker: Expose Ports](https://docs.docker.com/engine/containers/run/#exposed-ports)|
-| `--mount type=bind,source=~/Downloads/answers,target=/app/answers` | Volume (via Bind Mount) exposed into the container. This can be anywhere on your host, and should always map to `/app/answers` in the container. Ref: [Docker: Bind Mounts](https://docs.docker.com/engine/containers/run/#bind-mounts)|
+| `--mount type=bind,source=/host/path/answers,target=/app/answers` | Volume (via Bind Mount) exposed into the container. This can be anywhere on your host, and should always map to `/app/answers` in the container. Ref: [Docker: Bind Mounts](https://docs.docker.com/engine/containers/run/#bind-mounts)|
+| `-e PUID=<int>` (Optional) | Sets the container's User ID (PUID) in case your volume mount has dependencies on PUID/PGID and is different than the default `1000`. |
+| `-e PGID=<int>` (Optional) | Sets the container's Group ID (PGID) in case your volume mount has dependencies on PUID/PGID and is different than the default `1000`. |
 
 Take note of your docker host's IP address and exposed port (if you deviated from the default `8000`), so you can point PVE to it later.
 
