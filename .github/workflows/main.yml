@@ -13,13 +13,11 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.meta.outputs.tag }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: '0'
+          fetch-depth: "0"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -69,8 +67,8 @@ jobs:
             "quay.io/${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_CONTAINER_NAME }}:${{ steps.meta.outputs.tag }}"
           labels: |
             org.opencontainers.image.version = ${{ steps.meta.outputs.tag }}
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.meta.outputs.tag }}
-

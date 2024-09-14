@@ -18,4 +18,12 @@ RUN apt-get install -y \
 
 RUN pip install -r requirements.txt
 
+ARG PUID=1000
+ARG PGID=1000
+
+RUN groupadd -g "${PGID}" python \
+  && useradd --create-home --no-log-init -u "${PUID}" -g "${PGID}" python
+
+USER python
+
 CMD ["python3", "server.py"]
