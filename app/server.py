@@ -81,8 +81,6 @@ def lookup_answer_for_mac(mac: str) -> tomlkit.TOMLDocument | None:
 
 def process_custom_gh_username(toml_data: tomlkit.TOMLDocument):
     if 'custom' in toml_data:
-        toml_data['custom'] = tomlkit.table()
-
         if 'gh_username' in toml_data['custom']:
 
             # Extract the custom.gh_username string value
@@ -96,16 +94,16 @@ def process_custom_gh_username(toml_data: tomlkit.TOMLDocument):
                     f"Failed to fetch keys for {gh_username}. Response from GitHub: HTTP/{response.status_code}: {response.reason}"
                 )
             keys = response.text.splitlines()
+            
             # Append keys to global.root_ssh_keys
             if 'global' not in toml_data:
                 toml_data['global'] = tomlkit.table()
             if 'root_ssh_keys' not in toml_data['global']:
                 toml_data['global']['root_ssh_keys'] = tomlkit.array()
             toml_data['global']['root_ssh_keys'].extend(keys)
+
             # Remove custom/custom.gh_username
-            del toml_data['custom']['gh_username']
-            if not toml_data['custom']:
-                del toml_data['custom']
+            toml_data.pop('custom')
     return toml_data
 
 
