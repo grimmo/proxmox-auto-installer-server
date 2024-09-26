@@ -83,6 +83,17 @@ To run the PVE installer against this container:
 
 # Appendix
 
+## GitHub SSH Keys
+
+GitHub allows anyone to retrieve their (or anyone's) SSH public key by heading to https://github.com/<username>.keys. For example, mine is: https://github.com/SlothCroissant.keys. This is used by client-side tooling to automate addition of these keys into solutions. For example, when installing Canonical Ubuntu, you can specify your GitHub username, and the installer will retrieve your public keys to be injected into your user account's allowed keys list.
+
+You can now use this feature in proxmox-auto-installer-server. Add the following (optional) TOML, and the user's keys will be appended to your `global.root_ssh_keys[]`
+
+``` toml
+[custom]
+github_username = "Octocat" # Will add this user's GitHub public key(s) to global.root_ssh_keys[].
+```
+
 ## Example JSON POST data
 
 Below you can find a few exmples of the JSON POST data sent by Proxmox VE installer:
