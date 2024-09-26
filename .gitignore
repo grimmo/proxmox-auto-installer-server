@@ -1,3 +1,7 @@
+# Ignore Answers folder, but keep example toml:
+app/answers/*
+!app/answers/01:23:45:67:89:ab.toml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,46 @@
+{
+    "product": {
+      "fullname": "Proxmox VE (mocked)",
+      "product": "pve",
+      "enable_btrfs": true
+    },
+    "iso": {
+      "release": "8.2",
+      "isorelease": "2"
+    },
+    "dmi": {
+      "system": {
+        "uuid": "00000000-0000-0000-0000-000000000000",
+        "serial": "<serial_number_chassis>",
+        "name": "UCSC-C220-M4S",
+        "sku": ""
+      },
+      "baseboard": {
+        "name": "UCSC-C220-M4S",
+        "asset_tag": "",
+        "serial": "<serial_number_baseboard>"
+      },
+      "chassis": {
+        "asset_tag": "",
+        "serial": "<serial_number_chassis>"
+      }
+    },
+    "network_interfaces": [
+      {
+        "link": "enp9s0",
+        "mac": "aa:bb:cc:dd:ee:01"
+      },
+      {
+        "link": "enp10s0",
+        "mac": "aa:bb:cc:dd:ee:02"
+      },
+      {
+        "link": "enp1s0f0",
+        "mac": "aa:bb:cc:dd:ee:03"
+      },
+      {
+        "link": "enp1s0f1",
+        "mac": "aa:bb:cc:dd:ee:04"
+      }
+    ]
+  }
