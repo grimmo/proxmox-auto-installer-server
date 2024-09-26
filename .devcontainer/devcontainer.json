@@ -6,14 +6,6 @@
 	// "features": {},
 	// "forwardPorts": [8000],
 	"appPort": ["8000:8000"], // exposes on 0.0.0.0, which forwardPorts doesn't support
-	"postCreateCommand": "pip install -r app/requirements.txt",
-	"customizations": {
-		// Configure properties specific to VS Code.
-		"vscode": {
-			// Set *default* container specific settings.json values on container create.
-			"settings": {},
-			"extensions": ["ms-azuretools.vscode-docker"]
-		}
-	}
+	"postCreateCommand": "pip install -r app/requirements.txt"
 	// "remoteUser": "root"
 }

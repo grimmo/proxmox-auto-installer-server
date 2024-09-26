@@ -12,3 +12,6 @@ source = "from-dhcp"
 
 [disk-setup]
 filesystem = "ext4"
+
+[custom]
+github_username = "Octocat" # Will add this user's GitHub public key(s) to global.root_ssh_keys[].
