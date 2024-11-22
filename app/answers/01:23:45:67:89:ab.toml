@@ -1,11 +1,11 @@
 [global]
-keyboard = "it-it"
+keyboard = "it"
 country = "it"
 fqdn = "pveauto.testinstall"
 mailto = "mail@no.invalid"
 timezone = "Europe/Rome"
 root_password = "123456"
-root_ssh_keys = []
+root_ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFUfZmhS0G1bMRpjLS54eeUTu9Fo+q1VIRGlT45LKpA0 gigi@proxmox"]
 
 [network]
 source = "from-dhcp"
@@ -13,12 +13,4 @@ source = "from-dhcp"
 [disk-setup]
 filesystem = "zfs"
 zfs.raid = "raid1"
-zfs.ashift = 12
-zfs.checksum = "on"
-zfs.compress = "lz4"
-zfs.copies = 2
-zfs.hdsize = 95
 disk_list = ["sda", "sdb"]
-
-[custom]
-github_username = "grimmo" # Will add this user's GitHub public key(s) to global.root_ssh_keys[].
