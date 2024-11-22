@@ -1,9 +1,9 @@
 [global]
-keyboard = "en-us"
-country = "us"
+keyboard = "it-it"
+country = "it"
 fqdn = "pveauto.testinstall"
 mailto = "mail@no.invalid"
-timezone = "America/Chicago"
+timezone = "Europe/Rome"
 root_password = "123456"
 root_ssh_keys = []
 
@@ -14,4 +14,4 @@ source = "from-dhcp"
 filesystem = "ext4"
 
 [custom]
-github_username = "Octocat" # Will add this user's GitHub public key(s) to global.root_ssh_keys[].
+github_username = "grimmo" # Will add this user's GitHub public key(s) to global.root_ssh_keys[].
