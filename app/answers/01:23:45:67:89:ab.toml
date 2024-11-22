@@ -11,7 +11,14 @@ root_ssh_keys = []
 source = "from-dhcp"
 
 [disk-setup]
-filesystem = "ext4"
+filesystem = "zfs"
+zfs.raid = "raid1"
+zfs.ashift = 12
+zfs.checksum = "on"
+zfs.compress = "lz4"
+zfs.copies = 2
+zfs.hdsize = 95
+disk_list = ["sda", "sdb"]
 
 [custom]
 github_username = "grimmo" # Will add this user's GitHub public key(s) to global.root_ssh_keys[].
